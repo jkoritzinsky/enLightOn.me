@@ -56,7 +56,14 @@ io.on('connection', function(socket){
         socket.emit('waiting on opponent');
     } else {
         var matchName = uuid.v4();
-        var waitingClient = waitingClient.shift();
+        var waitingClient = null;
+        // Get first connected client
+        while((waitingClient = waitingClients.shift()).disconnected);
+        if(waitingClient == null) {
+            waitingClients.push(socket);
+            socket.emit('waiting on opponent');
+            return;
+        }
         waitingClient.join(matchName);
         waitingClient.emit('joined match', {opponent:socket.id});
         socket.join(matchName);
