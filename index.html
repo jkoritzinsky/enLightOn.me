@@ -8,14 +8,16 @@
 		<script src="scripts/nleap.js"></script>
 		<script src="scripts/nleap-handlers.js"></script>
 		<!-- Leap Motion End -->
-		
+
+		<link rel="stylesheet" type="text/css" href="css/styles.css">
+		<link rel="stylesheet" type="text/css" href="css/blockrain.css">
 	</head>
 	<body>
-		<canvas id="home" width="448" height="640"></canvas>
-		<script src="scripts/mousetrap.js"></script>
-		<script src="scripts/tetris.js"></script>
-
+		<div class="game"></div>
+		<script src="scripts/jquery.js"></script>
+		<script src="scripts/blockrain.jquery.js"></script>
 		<script>
+			$('.game').blockrain();
 		</script>
 	</body>
 </html>

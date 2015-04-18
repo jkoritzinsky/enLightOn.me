@@ -1,6 +1,8 @@
 var nleap = (function(){
     // exported object
     var exp = {};
+    // is device connected?
+    exp.deviceConnected = null;
     // map of event:handler {string:function}
     var handlers = {};
     // map of finger:extended {string:boolean}
@@ -42,6 +44,14 @@ var nleap = (function(){
 
         }
       }
+    });
+
+    controller.on("streamingStarted", function(){
+      exp.deviceConnected = true;
+    });
+
+    controller.on("streamingStopped", function(){
+      exp.deviceConnected = false;
     });
 
     // if all fingers extended, move mode 0
