@@ -1,0 +1,8 @@
+/*css/styles.css*/
+
+.game {
+	width: 400px;
+	height: 600px;
+	display: block;
+	margin: 0 auto;
+}

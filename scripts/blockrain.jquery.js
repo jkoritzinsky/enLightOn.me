@@ -1156,6 +1156,21 @@
         return !caught;
       }
 
+      window.controls = {
+        moveLeft: function () {
+          game._board.cur.moveLeft();
+        },
+        moveUp: function () {
+          game._board.cur.rotate(true);
+        },
+        moveRight: function () {
+          game._board.cur.moveRight();
+        },
+        moveDown: function () {
+          game._board.dropCount = game._board.dropDelat;
+        }
+      };
+
       function isStopKey(evt) {
         var cfg = {
           stopKeys: {37:1, 38:1, 39:1, 40:1}
