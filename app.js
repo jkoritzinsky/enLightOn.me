@@ -2,7 +2,7 @@ var uuid = require('node-uuid');
 var io = require('socket.io')();
 
 var matches = [];
-var waitingClient = null;
+var waitingClients = [];
 
 var getGameRoom = function(socket) {
     var rooms = socket.rooms;
@@ -13,29 +13,87 @@ var getGameRoom = function(socket) {
     return gameRoom;
 }
 
+var promptRematch = function(socket1, socket2) {
+    var socket1Rematch = null;
+    var socket2Rematch = null;
+    socket1.on('rematch', function(data) {
+        socket1Rematch = data;
+        if(socket1Rematch) {
+            if(socket2Rematch) {
+                socket1.emit('joined match', {opponent:socket2.id});
+                socket2.emit('joined match', {opponent:socket1.id});
+                var matchName = uuid.v4();
+                socket1.join(matchName);
+                socket2.join(matchName);
+            } else if (socket2Rematch === false) {
+                socket1.emit('rematch denied');
+            }
+        } else {
+            waitingClients.push(socket1);
+        }
+    });
+    socket2.on('rematch', function(data) {
+        socket2Rematch = data;
+        if(socket2Rematch) {
+            if(socket1Rematch) {
+                socket1.emit('joined match', {opponent:socket2.id});
+                socket2.emit('joined match', {opponent:socket1.id});
+                var matchName = uuid.v4();
+                socket1.join(matchName);
+                socket2.join(matchName);
+            } else if (socket1Rematch === false) {
+                socket1.emit('rematch denied');
+            }
+        } else {
+            waitingClients.push(socket2);
+        }
+    });
+}
+
 io.on('connection', function(socket){
-    if(waitingClient == null) {
-        waitingClient = socket;
+    if(waitingClients.length == 0) {
+        waitingClients.push(socket);
         socket.emit('waiting on opponent');
     } else {
         var matchName = uuid.v4();
+        var waitingClient = waitingClient.shift();
         waitingClient.join(matchName);
         waitingClient.emit('joined match', {opponent:socket.id});
         socket.join(matchName);
         socket.emit('joined match', {opponent:waitingClient.id});
         waitingClient.on('disonnect', function(data) {
             socket.emit('opponent disconnected', {opponent:waitingClient.id});
+            socket.leave(matchName);
         });
         socket.on('disconnect', function(data) {
             waitingClient.emit('opponent disconnected', {opponent:socket.id});
+            waitingClient.leave(matchName);
         });
         waitingClient.on('lose', function(data) {
-           socket.emit('win'); 
+            socket.emit('win'); 
+            waitingClient.leave(matchName);
+            socket.leave(matchName);
+            promptRematch(waitingClient, socket);
         });
         socket.on('lose', function(data){
             waitingClient.emit('win');
+            waitingClient.leave(matchName);
+            socket.leave(matchName);
+            promptRematch(waitingClient, socket);
         });
-        waitingClient = null;
+        
+        waitingClient.on('swap', function(data) {
+           socket.emit('swap', data); 
+        });
+        socket.on('swap', function(data) {
+           waitingClient.emit('swap', data); 
+        });
+        waitingClient.on('return swap', function(data) {
+           socket.emit('return swap', data); 
+        });
+        socket.on('return swap', function(data) {
+           waitingClient.emit('return swap', data); 
+        });
     }
 });
-io.listen(3000);
+io.listen(80);
