@@ -1,8 +1,17 @@
 /*css/styles.css*/
 
+body {
+	font-family: "Inconsolata", sans-serif;
+	background-color: black;
+}
+
 .game {
 	width: 400px;
 	height: 600px;
 	display: block;
 	margin: 0 auto;
+}
+
+.blockrain-game-over-btn {
+	cursor: pointer;
 }

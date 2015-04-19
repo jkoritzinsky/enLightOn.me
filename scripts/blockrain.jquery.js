@@ -1167,7 +1167,7 @@
           game._board.cur.moveRight();
         },
         moveDown: function () {
-          game._board.dropCount = game._board.dropDelat;
+          game._board.dropCount = game._board.dropDelay;
         }
       };
 
