@@ -46,8 +46,8 @@ var promptRematch = function(socket1, socket2) {
         socket2Rematch = data;
         if(socket2Rematch) {
             if(socket1Rematch) {
-                socket1.emit('joined match', {opponent:socket2.id});
-                socket2.emit('joined match', {opponent:socket1.id});
+                socket1.emit('joined match', {you: socket1.id, opponent:socket2.id});
+                socket2.emit('joined match', {you: socket2.id, opponent:socket1.id});
                 var matchName = uuid.v4();
                 socket1.join(matchName);
                 socket2.join(matchName);
