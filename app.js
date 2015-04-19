@@ -2,7 +2,15 @@ var uuid = require('node-uuid');
 var app = require('http').createServer(handler);
 //var io = require('socket.io')(app);
 var handler = function(req, res) {
-    res.writeHead(200, {'Access-Control-Allow-Origin' : '*'});
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+ 
+    // intercept OPTIONS method
+    if ('OPTIONS' == req.method) {
+      res.statusMessage = (200);
+    }
+    response.end();
 };
 app.listen(80);
 
