@@ -6,7 +6,7 @@ $(document).ready(function() {
         server.emit('lose', {});
     }
     server.on('win', function(data) {
-        alert('You win!');
+        console.log('You win!');
         server.emit('rematch', {});
     });
     server.on('joined match', function(data) {
@@ -15,11 +15,13 @@ $(document).ready(function() {
         $('.spinner').hide();
         $('.game').show();
         $('.opponentView').show();
+        cal.start();
+        $('#calibration').show();
     });
 
     server.on('opponent disconnected', function(data) {
         console.log('Your opponent disconnected');
-        alert('Your opponent disconnected! You win!');
+        console.log('You win!');
     });
     server.on('waiting on opponent', function(data){
         console.log('Waiting on opponent');

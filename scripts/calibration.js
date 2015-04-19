@@ -1,12 +1,14 @@
-(function(){
+var cal = {};
+
+cal.start = (function(){
   var calibration = $('#calibration');
 
-  setTimeout(function(){
-    if(nleap.deviceConnected){
-      $('.game').hide();
-      init();
-    }
-  }, 500);
+    setTimeout(function(){
+      if(nleap.deviceConnected){
+        $('.game').hide();
+        init();
+      }
+    }, 500);
 
   function init(){
     calibration.html("<h3>Position your hand above the Leapmotion.</h3>"
@@ -23,6 +25,7 @@
 
         if(secondsToStart < 0){
           $('#calibration').hide();
+          $('.opponentView').hide();
           $('.game').show();
           nleap.handle("xyzpos", null);
           window.controls.start();
@@ -73,4 +76,4 @@
 
   });
   }
-})();
+});
