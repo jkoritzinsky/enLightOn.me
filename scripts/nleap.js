@@ -47,10 +47,12 @@ var nleap = (function(){
 
     controller.on("streamingStarted", function(){
       exp.deviceConnected = true;
+      console.log("Leapmotion device connected.");
     });
 
     controller.on("streamingStopped", function(){
       exp.deviceConnected = false;
+      console.log("Leapmotion device disconnected.");
     });
 
     // if all fingers extended, move mode 0
