@@ -1,22 +1,8 @@
-//var uuid = require('node-uuid');
+var uuid = require('node-uuid');
 
-var handler = function(req, res) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
- 
-    // intercept OPTIONS method
-    if ('OPTIONS' == req.method) {
-      res.statusMessage = (200);
-    }
-    response.end();
-};
+var io = require('socket.io');
 
-var app = require('http').createServer(handler);
-//var io = require('socket.io')(app);
-
-app.listen(3000);
-/*
+io.listen(3000);
 var matches = [];
 var waitingClients = [];
 
@@ -65,7 +51,7 @@ var promptRematch = function(socket1, socket2) {
         }
     });
 }
-/*
+
 io.on('connection', function(socket){
     if(waitingClients.length == 0) {
         waitingClients.push(socket);
@@ -119,4 +105,3 @@ io.on('connection', function(socket){
         });
     }
 });
-*/
