@@ -784,6 +784,7 @@
 
             this.dropCount++;
             if( this.dropCount >= this.dropDelay || game.options.autoplay ) {
+              window.export(this.data);
               drop = true;
               this.dropCount = 0;
             }
@@ -1181,14 +1182,20 @@
           game._board.cur.moveRight();
         },
         moveDown: function () {
-          game._board.dropDelay = 0;
+
+          // can't smash for the first 1 second a block is out
+          if(new Date().getTime() - game._board.lastDrop > 1000){
+            game._board.dropDelay = 0;
+          }
+
           //game._board.dropCount = game._board.dropDelay;
         },
         start: function() {
           game.start();
         },
         refreshDelay: function() {
-          game._board.dropDelay = 20;
+          game._board.dropDelay = 30;
+          game._board.lastDrop = new Date().getTime();
         }
       };
 

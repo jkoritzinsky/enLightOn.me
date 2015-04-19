@@ -1,15 +1,17 @@
 (function(){
 
-  nleap.lastGridPos = 5;
+  nleap.lastGridPos = 20;
   nleap.lastHorizMove = 0;
+  nleap.lastNewBlock = 0;
 
   gameEvents.on('loadNewBlock', function () {
-    nleap.lastGridPos = 5;
+    nleap.lastGridPos = 20;
+    nleap.lastNewBlock = new Date().getTime();
     window.controls.refreshDelay();
   });
 
   nleap.handle("xpos", function(pos){
-    var gridPos = Math.floor((200 + pos)/40);
+    var gridPos = Math.floor((200 + pos)/10);
     if(new Date().getTime() - nleap.lastHorizMove > 50){
       if(nleap.lastGridPos > gridPos){
         window.controls.moveLeft();
@@ -19,11 +21,9 @@
       nleap.lastGridPos = gridPos;
       nleap.lastHorizMove = new Date().getTime();
     }
-    console.log(gridPos);
   });
 
   nleap.handle("down", function(){
-    console.log("DOWN!");
     window.controls.moveDown(true);
   });
 
@@ -33,7 +33,6 @@
     }else{
       window.controls.rotateCounterclockwise();
     }
-    console.log("Rotate " + (clockwise ? "clockwise" : "counter-clockwise"));
   });
 
 })();

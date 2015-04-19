@@ -12,6 +12,9 @@ $(document).ready(function() {
     server.on('joined match', function(data) {
         console.log('your id is: ' + data.you);
         console.log('your opponent id is: ' + data.opponent);
+        $('.spinner').hide();
+        $('.game').show();
+
     });
 
     server.on('opponent disconnected', function(data) {
@@ -25,6 +28,8 @@ $(document).ready(function() {
         console.log('Rematch denied');
     });
     server.on('opponent update', function (data) {
-        console.log('Opponent sent ' + data.length + ' piece locations');
+        if(data != null) {
+            console.log('Opponent sent ' + data.length + ' piece locations');
+        }
     });
 });
