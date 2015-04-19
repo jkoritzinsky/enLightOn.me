@@ -1154,10 +1154,10 @@
             }
           }
           switch(evt.keyCode) {
-            case 37: /*left*/   game._board.cur.moveLeft(); break;
-            case 38: /*up*/     game._board.cur.rotate(true); break;
-            case 39: /*right*/  game._board.cur.moveRight(); break;
-            case 40: /*down*/   game._board.dropCount = game._board.dropDelay; break;
+            // case 37: /*left*/   game._board.cur.moveLeft(); break;
+            // case 38: /*up*/     game._board.cur.rotate(true); break;
+            // case 39: /*right*/  game._board.cur.moveRight(); break;
+            // case 40: /*down*/   game._board.dropCount = game._board.dropDelay; break;
             case 88: /*x*/      game._board.cur.rotate(true); break;
             case 90: /*z*/      game._board.cur.rotate(false); break;
             default: caught = false;
