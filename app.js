@@ -103,10 +103,14 @@ io.on('connection', function(socket){
         });
         socket.on('opponent update', function(data) {
            var matchName = getGameRoom(socket);
+            console.log("Opponent Update");
+            console.log(data);
            socket.to(matchName).broadcast('opponent update', data); 
         });
         waitingClient.on('opponent update', function(data) {
            var matchName = getGameRoom(waitingClient);
+            console.log("Opponent Update");
+            console.log(data);
            waitingClient.to(matchName).broadcast('opponent update', data); 
         });
     }
