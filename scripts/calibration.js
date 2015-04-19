@@ -6,6 +6,7 @@ cal.start = (function(){
     setTimeout(function(){
       if(nleap.deviceConnected){
         $('.game').hide();
+        $('.opponentView').hide();
         init();
       }
     }, 500);
@@ -25,7 +26,7 @@ cal.start = (function(){
 
         if(secondsToStart < 0){
           $('#calibration').hide();
-          $('.opponentView').hide();
+          $('.opponentView').show();
           $('.game').show();
           nleap.handle("xyzpos", null);
           window.controls.start();
