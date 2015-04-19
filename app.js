@@ -84,22 +84,26 @@ io.on('connection', function(socket){
         waitingClient.on('disonnect', function(data) {
             socket.emit('opponent disconnected', {opponent:waitingClient.id});
             socket.leave(matchName);
+            waitingClients.push(waitingClient);
         });
         socket.on('disconnect', function(data) {
             waitingClient.emit('opponent disconnected', {opponent:socket.id});
             waitingClient.leave(matchName);
+            waitingClients.push(socket);
         });
         waitingClient.on('lose', function(data) {
             socket.emit('win'); 
             waitingClient.leave(matchName);
             socket.leave(matchName);
-            promptRematch(waitingClient, socket);
+            //promptRematch(waitingClient, socket);
+            waitingClients.push(waitingClient);
         });
         socket.on('lose', function(data){
             waitingClient.emit('win');
             waitingClient.leave(matchName);
             socket.leave(matchName);
-            promptRematch(waitingClient, socket);
+            //promptRematch(waitingClient, socket);
+            waitingClients.push(socket);
         });
         socket.on('opponent update', function(data) {
             console.log("Opponent Update");
