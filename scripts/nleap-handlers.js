@@ -1,15 +1,15 @@
 (function(){
 
-  nleap.lastGridPos = 5;
+  nleap.lastGridPos = 20;
   nleap.lastHorizMove = 0;
 
   gameEvents.on('loadNewBlock', function () {
-    nleap.lastGridPos = 5;
+    nleap.lastGridPos = 20;
     window.controls.refreshDelay();
   });
 
   nleap.handle("xpos", function(pos){
-    var gridPos = Math.floor((200 + pos)/40);
+    var gridPos = Math.floor((200 + pos)/10);
     if(new Date().getTime() - nleap.lastHorizMove > 50){
       if(nleap.lastGridPos > gridPos){
         window.controls.moveLeft();
