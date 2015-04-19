@@ -101,19 +101,6 @@ io.on('connection', function(socket){
             socket.leave(matchName);
             promptRematch(waitingClient, socket);
         });
-        
-        waitingClient.on('swap', function(data) {
-           socket.emit('swap', data); 
-        });
-        socket.on('swap', function(data) {
-           waitingClient.emit('swap', data); 
-        });
-        waitingClient.on('return swap', function(data) {
-           socket.emit('return swap', data); 
-        });
-        socket.on('return swap', function(data) {
-           waitingClient.emit('return swap', data); 
-        });
     }
 });
 /**/
