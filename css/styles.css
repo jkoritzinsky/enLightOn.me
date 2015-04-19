@@ -21,9 +21,9 @@ body {
 	padding: 32px;
 	color: white;
 	display: inline-block;
-	/*background-color: orange;*/
 	float: right;
 	border: 2px solid white;
+	float: right;
 }
 
 #opponent {
