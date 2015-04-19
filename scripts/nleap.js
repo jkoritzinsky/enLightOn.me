@@ -31,14 +31,6 @@ var nleap = (function(){
           // if in move mode #1, track position of index finger
           if(moveMode == 1) {
             trackXPos(frame.hands[0]);
-
-            if(frame.gestures.length > 0){
-              frame.gestures.forEach(function(gesture){
-                if(gesture.type == "keyTap"){
-                  console.log("Key Tap!");
-                }
-              });
-            }
           }
 
           // if in move mode #0, track swipe gestures

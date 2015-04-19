@@ -1,6 +1,10 @@
 nleap.lastGridPos = 5;
 nleap.lastHorizMove = 0;
 
+gameEvents.on('loadNewBlock', function () {
+  nleap.lastGridPos = 5;
+});
+
 nleap.handle("xpos", function(pos){
   var gridPos = Math.floor((200 + pos)/25);
   if(new Date().getTime() - nleap.lastHorizMove > 50){
