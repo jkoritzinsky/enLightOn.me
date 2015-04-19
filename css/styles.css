@@ -1,7 +1,6 @@
 /*css/styles.css*/
 
 body {
-	width: 600px;
 	font-family: "Inconsolata", sans-serif;
 	background-color: black;
 }
@@ -14,6 +13,9 @@ body {
 	width: 400px;
 	height: 600px;
 	display: inline-block;
+	position: absolute;
+	left: 0;
+	top: 0;
 }
 
 .opponentView {
@@ -21,9 +23,10 @@ body {
 	padding: 32px;
 	color: white;
 	display: inline-block;
-	float: right;
+	position: absolute;
+	top: 0;
+	right: 0;
 	border: 2px solid white;
-	float: right;
 }
 
 #opponent {
