@@ -8,7 +8,7 @@
   });
 
   nleap.handle("xpos", function(pos){
-    var gridPos = Math.floor((200 + pos)/25);
+    var gridPos = Math.floor((200 + pos)/40);
     if(new Date().getTime() - nleap.lastHorizMove > 50){
       if(nleap.lastGridPos > gridPos){
         window.controls.moveLeft();
