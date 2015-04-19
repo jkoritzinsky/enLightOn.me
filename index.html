@@ -16,9 +16,23 @@
 		<script src="scripts/jquery.js"></script>
 		<script src="scripts/blockrain.jquery.js"></script>
 		<script src="scripts/events.js"></script>
+		<script src="scripts/mousetrap.js"></script>
 		<script>
 			$('.game').blockrain({
 				theme: 'gameboy'
+			});
+
+			Mousetrap.bind('up', function () {
+				window.controls_home.rotateClockwise()
+			});
+			Mousetrap.bind('down', function () {
+				window.controls_home.moveDown()
+			});
+			Mousetrap.bind('right', function () {
+				window.controls_home.moveRight()
+			});
+			Mousetrap.bind('left', function () {
+				window.controls_home.moveLeft()
 			});
 		</script>
 
