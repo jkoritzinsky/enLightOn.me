@@ -30,7 +30,7 @@ $(document).ready(function() {
     server.on('opponent update', function (data) {
         if(data != null) {
             // console.log('Opponent sent ' + data.length + ' piece locations');
-            oppCvs.render(data.data, data.float);
+            oppCvs.render(data);
         }
     });
 });

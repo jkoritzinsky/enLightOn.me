@@ -73,14 +73,11 @@
 
 			var delay = 0;
 			gameEvents.on('gameStart', function () {
-				window.export = function (data, float) {
+				window.export = function (data) {
 					if (delay > 20) {
 						delay = 0;
 						console.log('emit');
-						server.emit('opponent update', {
-							locked: data,
-							float: float
-						});
+						server.emit('opponent update', data);
 					} else {
 						delay++;
 					}
