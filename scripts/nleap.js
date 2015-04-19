@@ -31,6 +31,14 @@ var nleap = (function(){
           // if in move mode #1, track position of index finger
           if(moveMode == 1) {
             trackXPos(frame.hands[0]);
+
+            if(frame.gestures.length > 0){
+              frame.gestures.forEach(function(gesture){
+                if(gesture.type == "keyTap"){
+                  console.log("Key Tap!");
+                }
+              });
+            }
           }
 
           // if in move mode #0, track swipe gestures
@@ -157,7 +165,7 @@ var nleap = (function(){
     var lastEventTime = 0;
     var SWIPE_WAIT = 500;
     var POS_WAIT = 25;
-    var CIRCLE_WAIT = 1000;
+    var CIRCLE_WAIT = 1500;
 
     function regulate(name){
       if(name == "xpos" && new Date().getTime() - lastEventTime > POS_WAIT){
