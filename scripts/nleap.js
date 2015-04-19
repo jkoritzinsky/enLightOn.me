@@ -66,6 +66,9 @@ var nleap = (function(){
       if(name == "xyzpos")
         return true;
 
+      if( (name == "xpos" && lastEvent == "down") && (new Date().getTime() - lastEventTime < 2*waitMap["swipe"]) )
+        return false;
+
       if(lastEvent != name || new Date().getTime() - lastEventTime > waitMap[name]) {
         lastEventTime = new Date().getTime();
         lastEvent = name;

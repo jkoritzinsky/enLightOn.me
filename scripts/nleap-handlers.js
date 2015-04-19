@@ -5,6 +5,7 @@
 
   gameEvents.on('loadNewBlock', function () {
     nleap.lastGridPos = 5;
+    window.controls.refreshDelay();
   });
 
   nleap.handle("xpos", function(pos){
@@ -21,19 +22,9 @@
     console.log(gridPos);
   });
 
-  nleap.handle("left", function(){
-    console.log("LEFT!");
-  });
-
-  nleap.handle("right", function(){
-    console.log("RIGHT!");
-  });
-
   nleap.handle("down", function(){
     console.log("DOWN!");
-    for(var i = 0; i < 50; i++){
-      window.controls.moveDown();
-    }
+    window.controls.moveDown(true);
   });
 
   nleap.handle("rotate", function(clockwise){

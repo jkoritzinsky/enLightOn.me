@@ -51,12 +51,12 @@
       return;
     }
 
-    if(vector3[1] < 100){
+    if(vector3[1] < 150){
       $('#calibration p').html("Move your hand up.");
       return;
     }
 
-    if(vector3[1] > 200){
+    if(vector3[1] > 250){
       $('#calibration p').html("Move your hand down.");
       return;
     }
