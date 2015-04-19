@@ -25,7 +25,7 @@
       autoBlockWidth: false, // The blockWidth is dinamically calculated based on the autoBlockSize. Disabled blockWidth. Useful for responsive backgrounds
       autoBlockSize: 24, // The max size of a block for autowidth mode
       difficulty: 'normal', // Difficulty (normal|nice|evil).
-      speed: 20, // The speed of the game. The higher, the faster the pieces go.
+      speed: 15, // The speed of the game. The higher, the faster the pieces go.
       asdwKeys: true, // Enable ASDW keys
 
       // Copy
@@ -1182,6 +1182,9 @@
         },
         moveDown: function () {
           game._board.dropCount = game._board.dropDelay;
+        },
+        start: function() {
+          game.start();
         }
       };
 
