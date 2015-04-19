@@ -25,6 +25,8 @@ $(document).ready(function() {
         console.log('Rematch denied');
     });
     server.on('opponent update', function (data) {
-        console.log('Opponent sent ' + data.length + ' piece locations');
+        if(data != null) {
+            console.log('Opponent sent ' + data.length + ' piece locations');
+        }
     });
 });
