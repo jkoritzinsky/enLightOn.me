@@ -1,5 +1,9 @@
 var uuid = require('node-uuid');
-var io = require('socket.io')(80);
+var app = require('http').createServer(handler);
+var io = require('socket.io')(app);
+
+app.listen(80);
+
 io.set('origins', '*:*');
 
 var matches = [];
@@ -104,4 +108,3 @@ io.on('connection', function(socket){
         });
     }
 });
-io.listen(80);
