@@ -78,9 +78,9 @@ io.on('connection', function(socket){
             return;
         }
         waitingClient.join(matchName);
-        waitingClient.emit('joined match', {you:waitingClient, opponent:socket.id});
+        waitingClient.emit('joined match', {opponent:socket.id});
         socket.join(matchName);
-        socket.emit('joined match', {you:socket, opponent:waitingClient.id});
+        socket.emit('joined match', {opponent:waitingClient.id});
         waitingClient.on('disonnect', function(data) {
             socket.emit('opponent disconnected', {opponent:waitingClient.id});
             socket.leave(matchName);
