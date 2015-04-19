@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>HTML5 Tetris</title>
+		<title>Enlighton.me Tetris</title>
 
 		<link href="http://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" type="text/css" href="css/styles.css">
@@ -47,8 +47,10 @@
 				window.export = function (data) {
 					if (delay > 10) {
 						delay = 0;
+						console.log('send');
 						server.emit('opponent update', data);
 					} else {
+						console.log('avoided');
 						delay++;
 					}
 				}
