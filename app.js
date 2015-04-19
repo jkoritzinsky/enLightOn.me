@@ -1,5 +1,6 @@
 var uuid = require('node-uuid');
 var io = require('socket.io')();
+io.set('origins', '*');
 
 var matches = [];
 var waitingClients = [];
