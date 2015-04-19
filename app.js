@@ -1,6 +1,5 @@
-var uuid = require('node-uuid');
-var app = require('http').createServer(handler);
-//var io = require('socket.io')(app);
+//var uuid = require('node-uuid');
+
 var handler = function(req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
@@ -12,8 +11,12 @@ var handler = function(req, res) {
     }
     response.end();
 };
-app.listen(80);
 
+var app = require('http').createServer(handler);
+//var io = require('socket.io')(app);
+
+app.listen(80);
+/*
 var matches = [];
 var waitingClients = [];
 
