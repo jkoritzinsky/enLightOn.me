@@ -1,5 +1,10 @@
 /*css/styles.css*/
 
+body {
+	font-family: "Inconsolata", sans-serif;
+	background-color: black;
+}
+
 .game {
 	width: 400px;
 	height: 600px;
