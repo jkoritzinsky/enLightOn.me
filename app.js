@@ -15,7 +15,7 @@ var handler = function(req, res) {
 var app = require('http').createServer(handler);
 //var io = require('socket.io')(app);
 
-app.listen(80);
+app.listen(1337);
 /*
 var matches = [];
 var waitingClients = [];
