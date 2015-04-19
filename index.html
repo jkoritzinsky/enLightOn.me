@@ -45,13 +45,13 @@
 			var delay = 0;
 			gameEvents.on('gameStart', function () {
 				window.export = function (data) {
-					if (delay > 10) {
-						delay = 0;
+					// if (delay > 10) {
+					// 	delay = 0;
 						console.log('send data');
 						server.emit('opponent update', data);
-					} else {
-						delay++;
-					}
+					// } else {
+					// 	delay++;
+					// }
 				}
 			});
 

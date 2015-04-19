@@ -662,7 +662,7 @@
           game._$scoreText.text(this.score);
         },
         draw: function() {
-          window.export(this.data);
+          // window.export(this.data);
           for (var i=0, len=this.data.length, row, color; i<len; i++) {
             if (this.data[i] !== undefined) {
               row = this.asY(i);
@@ -784,6 +784,7 @@
 
             this.dropCount++;
             if( this.dropCount >= this.dropDelay || game.options.autoplay ) {
+              window.export(this.data);
               drop = true;
               this.dropCount = 0;
             }

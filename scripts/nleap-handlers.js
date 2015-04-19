@@ -7,7 +7,6 @@
   gameEvents.on('loadNewBlock', function () {
     nleap.lastGridPos = 20;
     nleap.lastNewBlock = new Date().getTime();
-    console.log("1");
     window.controls.refreshDelay();
   });
 
