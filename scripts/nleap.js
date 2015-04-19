@@ -170,7 +170,7 @@ var nleap = (function(){
       if(!handlers[name])
         return false;
 
-      if(name == "xpos"){
+      if(name == "xpos" || name == "xyzpos"){
         if(new Date().getTime() - lastEventTime > POS_WAIT){
           lastEventTime = new Date().getTime();
           lastEvent = name;
