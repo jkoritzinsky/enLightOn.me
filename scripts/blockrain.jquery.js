@@ -1181,7 +1181,12 @@
           game._board.cur.moveRight();
         },
         moveDown: function () {
-          game._board.dropDelay = 0;
+
+          // can't smash for the first 1 second a block is out
+          if(new Date().getTime() - game._board.lastDrop > 1000){
+            game._board.dropDelay = 0;
+          }
+
           //game._board.dropCount = game._board.dropDelay;
         },
         start: function() {
@@ -1189,6 +1194,7 @@
         },
         refreshDelay: function() {
           game._board.dropDelay = 30;
+          game._board.lastDrop = new Date().getTime();
         }
       };
 
