@@ -6,7 +6,7 @@ $(document).ready(function() {
         server.emit('lose', {});
     }
     server.on('win', function(data) {
-        console.log('You win!');
+        alert('You win!');
         server.emit('rematch', {});
     });
     server.on('joined match', function(data) {
@@ -21,7 +21,7 @@ $(document).ready(function() {
 
     server.on('opponent disconnected', function(data) {
         console.log('Your opponent disconnected');
-        console.log('You win!');
+        alert('Your opponent disconnected! You win!');
     });
     server.on('waiting on opponent', function(data){
         console.log('Waiting on opponent');
