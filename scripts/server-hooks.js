@@ -7,9 +7,20 @@ $(document).ready(function() {
     }
     server.on('win', function(data) {
         console.log('You win!');
+        server.emit('rematch', {});
     });
     server.on('joined match', function(data) {
         console.log('your id is: ' + data.you);
         console.log('your opponent id is: ' + data.opponent);
+    });
+    server.on('opponent disconnected', function(data) {
+        console.log('Your opponent disconnected');
+        console.log('You win!');
+    });
+    server.on('waiting on opponent', function(data){
+        console.log('Waiting on opponent');
+    });
+    server.on('rematch denied', function(data) {
+        console.log('Rematch denied');
     });
 });
