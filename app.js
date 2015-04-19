@@ -2,7 +2,7 @@ var uuid = require('node-uuid');
 
 var io = require('socket.io')();
 
-io.listen(3000);
+io.listen(3001);
 /*
 var matches = [];
 var waitingClients = [];
