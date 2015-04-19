@@ -1,5 +1,12 @@
+nleap.lastGridPos = 5;
+
 nleap.handle("xpos", function(pos){
-  console.log(pos);
+  var gridPos = Math.floor((200 + pos)/40);
+  if(nleap.lastGridPos > gridPos){
+    window.controls.moveLeft();
+  }else{
+    window.controls.moveRight();
+  }
 });
 
 nleap.handle("left", function(){
@@ -12,8 +19,16 @@ nleap.handle("right", function(){
 
 nleap.handle("down", function(){
   console.log("DOWN!");
+  for(var i = 0; i < 50; i++){
+    window.controls.moveDown();
+  }
 });
 
-nleap.handle("rotate", function(){
-  console.log("ROTATE!");
+nleap.handle("rotate", function(clockwise){
+  console.log("ROTATE " + (clockwise ? "clockwise" : "counter-clockwise"));
+  if(clockwise){
+    window.controls.rotateClockwise();
+  }else{
+    window.controls.rotateCounterclockwise();
+  }
 });

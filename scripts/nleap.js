@@ -23,7 +23,7 @@ var nleap = (function(){
           if(moveMode == 2 && frame.gestures.length > 0) {
             frame.gestures.forEach(function(gesture){
               if(gesture.type == "circle"){
-                trackCircle(gesture);
+                trackCircle(frame, gesture);
               }
             });
           }
@@ -41,7 +41,6 @@ var nleap = (function(){
               }
             });
           }
-
         }
       }
     });
@@ -127,8 +126,16 @@ var nleap = (function(){
       }
     }
 
-    function trackCircle(gesture) {
-      event("rotate", null);
+    function trackCircle(frame, gesture) {
+      var pointableID = gesture.pointableIds[0];
+      var direction = frame.pointable(pointableID).direction;
+      var dotProduct = Leap.vec3.dot(direction, gesture.normal);
+
+      if( dotProduct > 0) {
+        event("rotate", true);
+      }else{
+        event("rotate", false);
+      }
     }
 
     function event(name, param){
@@ -138,7 +145,7 @@ var nleap = (function(){
       if(!handlers[name])
         return
 
-      if(name == "xpos"){
+      if(name == "xpos" || name == "rotate"){
         handlers[name](param);
       }else{
         handlers[name]();

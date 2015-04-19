@@ -277,8 +277,8 @@
             var cx = x * this._block_size;
             var cy = y * this._block_size;
 
-            this._ctx.drawImage( this._theme.backgroundGrid, 
-                            0, 0, this._theme.backgroundGrid.width, this._theme.backgroundGrid.height, 
+            this._ctx.drawImage( this._theme.backgroundGrid,
+                            0, 0, this._theme.backgroundGrid.width, this._theme.backgroundGrid.height,
                             cx, cy, this._block_size, this._block_size);
           }
         }
@@ -311,7 +311,7 @@
 
     /**
      * Draws one block (Each piece is made of 4 blocks)
-     * The blockType is used to draw any block. 
+     * The blockType is used to draw any block.
      * The falling attribute is needed to apply different styles for falling and placed blocks.
      */
     _drawBlock: function(x, y, blockType, falling) {
@@ -1160,8 +1160,11 @@
         moveLeft: function () {
           game._board.cur.moveLeft();
         },
-        moveUp: function () {
+        rotateClockwise: function() {
           game._board.cur.rotate(true);
+        },
+        rotateCounterclockwise: function() {
+          game._board.cur.rotate(false);
         },
         moveRight: function () {
           game._board.cur.moveRight();
