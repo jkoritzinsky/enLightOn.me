@@ -1,6 +1,7 @@
 /*css/styles.css*/
 
 body {
+	padding-top: 32px;
 	font-family: "Inconsolata", sans-serif;
 	background-color: black;
 }
