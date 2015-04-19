@@ -1,7 +1,7 @@
 var uuid = require('node-uuid');
 var app = require('http').createServer(handler);
-var io = require('socket.io')(app);
-var handler = function(req, res, next) {
+//var io = require('socket.io')(app);
+var handler = function(req, res) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
@@ -15,8 +15,6 @@ var handler = function(req, res, next) {
     }
 };
 app.listen(80);
-
-io.set('origins', '*:*');
 
 var matches = [];
 var waitingClients = [];
@@ -66,7 +64,7 @@ var promptRematch = function(socket1, socket2) {
         }
     });
 }
-
+/*
 io.on('connection', function(socket){
     if(waitingClients.length == 0) {
         waitingClients.push(socket);
@@ -120,3 +118,4 @@ io.on('connection', function(socket){
         });
     }
 });
+*/
