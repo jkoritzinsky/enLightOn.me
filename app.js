@@ -101,6 +101,14 @@ io.on('connection', function(socket){
             socket.leave(matchName);
             promptRematch(waitingClient, socket);
         });
+        socket.on('opponent update', function(data) {
+           var matchName = getGameRoom(socket);
+           socket.to(matchName).broadcast('opponent update', data); 
+        });
+        waitingClient.on('opponent update', function(data) {
+           var matchName = getGameRoom(waitingClient);
+           waitingClient.to(matchName).broadcast('opponent update', data); 
+        });
     }
 });
 /**/
