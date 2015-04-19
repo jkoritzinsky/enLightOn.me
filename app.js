@@ -1,8 +1,15 @@
 var uuid = require('node-uuid');
 
-var io = require('socket.io')();
+var app = require('http').createServer(handler);
+var io = require('socket.io')(app);
 
-io.listen(3001);
+app.listen(3001);
+
+function handler (req, res) {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+  res.writeHead(200);
+    res.end();
+}
 
 var matches = [];
 var waitingClients = [];
