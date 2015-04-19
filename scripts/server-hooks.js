@@ -12,6 +12,9 @@ $(document).ready(function() {
     server.on('joined match', function(data) {
         console.log('your id is: ' + data.you);
         console.log('your opponent id is: ' + data.opponent);
+        $('.spinner').hide();
+        $('.game').show();
+
     });
 
     server.on('opponent disconnected', function(data) {
