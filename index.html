@@ -7,23 +7,52 @@
 		<link rel="stylesheet" type="text/css" href="css/styles.css">
 		<link rel="stylesheet" type="text/css" href="css/blockrain.css">
 		<link rel="stylesheet" type="text/css" href="css/calibration.css">
+		<link rel="stylesheet" type="text/css" href="css/spinner.css">
 	</head>
 	<body>
+		<div class="spinner">
+			<div class="cube1"></div>
+			<div class="cube2"></div>
+			<p>Looking for an opponent...</p>
+		</div>
 		<div id="calibration"></div>
-		<div id="container">
-			<div class="panel">
-				<div class="game"></div>
-			</div>
+		<div class="game"></div>
+		<div class="opponentView">
+			<h1>Opponent</h1>
+			<canvas id="opponent" width="200" height="320"></canvas>
 		</div>
 
 		<script src="scripts/jquery.js"></script>
 		<script src="scripts/blockrain.jquery.js"></script>
 		<script src="scripts/events.js"></script>
+		<script src="scripts/opponentRender.js"></script>
 		<script src="scripts/mousetrap.js"></script>
         <script src="https://cdn.socket.io/socket.io-1.3.5.js"></script>
         <script src="scripts/server-hooks.js"></script>
+				<script src="scripts/spinner.js"></script>
 		<script>
+			window.mergeGrid = function (grid, float) {
+				var blocks = float.getBlocks();
+
+				var newGrid = [];
+				for (var i = 0; i < grid.length; i++) {
+					newGrid[i] = grid[i];
+				}
+
+				for (var i = 0; i < blocks.length; i += 2) {
+					var newX = float.x + blocks[i];
+					var newY = float.y + blocks[i + 1];
+					var pos = newX + newY * 10;
+					if (pos > 0) {
+						newGrid[pos] = float.blockType;
+					}
+				}
+
+				return newGrid;
+			}
+
 			window.export = function () {};
+			var oppCvs = new OpponentCanvas();
 
 			var game = $('.game').blockrain({
 				theme: 'gameboy'
@@ -45,13 +74,13 @@
 			var delay = 0;
 			gameEvents.on('gameStart', function () {
 				window.export = function (data) {
-					// if (delay > 10) {
-					// 	delay = 0;
-						console.log('send data');
+					if (delay > 20) {
+						delay = 0;
+						console.log('emit');
 						server.emit('opponent update', data);
-					// } else {
-					// 	delay++;
-					// }
+					} else {
+						delay++;
+					}
 				}
 			});
 

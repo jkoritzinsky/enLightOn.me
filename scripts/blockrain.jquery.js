@@ -662,7 +662,7 @@
           game._$scoreText.text(this.score);
         },
         draw: function() {
-          // window.export(this.data);
+          window.export(window.mergeGrid(this.data, game._board.cur));
           for (var i=0, len=this.data.length, row, color; i<len; i++) {
             if (this.data[i] !== undefined) {
               row = this.asY(i);

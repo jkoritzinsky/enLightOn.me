@@ -1,23 +1,32 @@
 /*css/styles.css*/
 
 body {
+	width: 600px;
 	font-family: "Inconsolata", sans-serif;
 	background-color: black;
 }
 
 #container {
-	text-align: center;
-}
-
-.panel {
-	width: 400px;
-	height: 640px;
-	display: inline-block;
+	margin: 0 auto;
 }
 
 .game {
 	width: 400px;
 	height: 600px;
+	display: inline-block;
+}
+
+.opponentView {
+	text-align: center;
+	padding: 32px;
+	color: white;
+	display: inline-block;
+	float: right;
+	border: 2px solid white;
+	float: right;
+}
+
+#opponent {
 	display: block;
 }
 

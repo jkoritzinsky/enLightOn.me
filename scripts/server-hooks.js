@@ -12,6 +12,9 @@ $(document).ready(function() {
     server.on('joined match', function(data) {
         console.log('your id is: ' + data.you);
         console.log('your opponent id is: ' + data.opponent);
+        $('.spinner').hide();
+        $('.game').show();
+        $('.opponentView').show();
     });
 
     server.on('opponent disconnected', function(data) {
@@ -26,7 +29,7 @@ $(document).ready(function() {
     });
     server.on('opponent update', function (data) {
         if(data != null) {
-            console.log('Opponent sent ' + data.length + ' piece locations');
+            oppCvs.render(data);
         }
     });
 });
