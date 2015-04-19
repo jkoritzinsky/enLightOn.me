@@ -47,7 +47,7 @@
 				window.export = function (data) {
 					if (delay > 10) {
 						delay = 0;
-						console.log(data.length);
+						server.emit('opponent update', data);
 					} else {
 						delay++;
 					}
