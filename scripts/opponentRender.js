@@ -42,9 +42,8 @@ function OpponentCanvas() {
 
 			var x = 0,
 				y = 0;
-			for (var i = 0; i < data.length; i++) {
-				x++;
 
+			for (var i = 0; i < data.length; i++) {
 				if (x >= cols) {
 					x = 0;
 					y++;
@@ -54,6 +53,8 @@ function OpponentCanvas() {
 					ctx.fillStyle = dict[data[i]];
 					ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
 				}
+
+				x++;
 			}
 		}
 	}
