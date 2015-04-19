@@ -6,25 +6,22 @@ body {
 }
 
 #container {
-	margin: 0 auto;
 	text-align: center;
 }
 
-.home, .away {
+.panel {
 	width: 400px;
-	height: 600px;
+	height: 640px;
 	display: inline-block;
 }
 
 .home {
-	margin: 0 auto;
+	width: 400px;
+	height: 600px;
+	display: block;
 }
 
-.away {
-	transform: scale(0.8,0.8);
-}
-
-.away .blockrain-start {
+.blockrain-score-holder, .blockrain-score {
 	display: none;
 }
 
