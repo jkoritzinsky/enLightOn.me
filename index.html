@@ -19,7 +19,9 @@
 		<script src="scripts/events.js"></script>
 		<script src="scripts/mousetrap.js"></script>
 		<script>
-			$('.game').blockrain({
+			window.export = function () {};
+
+			var home = $('.home').blockrain({
 				theme: 'gameboy'
 			});
 
@@ -34,6 +36,22 @@
 			});
 			Mousetrap.bind('left', function () {
 				window.controls_home.moveLeft()
+			});
+
+			var delay = 0;
+			gameEvents.on('gameStart', function () {
+				window.export = function (data) {
+					if (delay > 10) {
+						delay = 0;
+						console.log(data.length);
+					} else {
+						delay++;
+					}
+				}
+			});
+
+			gameEvents.on('gamePause', function () {
+				window.export = function () {}
 			});
 		</script>
 
