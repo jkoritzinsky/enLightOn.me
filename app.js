@@ -3,6 +3,7 @@ var uuid = require('node-uuid');
 var io = require('socket.io')();
 
 io.listen(3000);
+/*
 var matches = [];
 var waitingClients = [];
 
@@ -105,3 +106,4 @@ io.on('connection', function(socket){
         });
     }
 });
+*/
