@@ -19,6 +19,8 @@ var nleap = (function(){
         if(frame.hands) {
           moveMode = getMoveMode(frame.hands[0]);
 
+          trackXYZPos(frame.hands[0]);
+
           // if in move mode #2, track circle gestures
           if(moveMode == 2 && frame.gestures.length > 0) {
             frame.gestures.forEach(function(gesture){
@@ -140,6 +142,12 @@ var nleap = (function(){
       }
     }
 
+    function trackXYZPos(hand) {
+      if(hand){
+        event("xyzpos", hand.palmPosition);
+      }
+    }
+
     function event(name, param){
       if(!regulate(name))
         return
@@ -147,11 +155,7 @@ var nleap = (function(){
       if(!handlers[name])
         return
 
-      if(name == "xpos" || name == "rotate"){
-        handlers[name](param);
-      }else{
-        handlers[name]();
-      }
+      handlers[name](param);
     }
 
     /** Regulate how fast events are broadcasted **/
@@ -162,16 +166,28 @@ var nleap = (function(){
     var CIRCLE_WAIT = 1500;
 
     function regulate(name){
-      if(name == "xpos" && new Date().getTime() - lastEventTime > POS_WAIT){
-        lastEventTime = new Date().getTime();
-        lastEvent = name;
-        return true;
+
+      if(!handlers[name])
+        return false;
+
+      if(name == "xpos" || name == "xyzpos"){
+        if(new Date().getTime() - lastEventTime > POS_WAIT){
+          lastEventTime = new Date().getTime();
+          lastEvent = name;
+          return true;
+        }else{
+          return false;
+        }
       }
 
-      if(name == "rotate" && new Date().getTime() - lastEventTime > CIRCLE_WAIT){
-        lastEventTime = new Date().getTime();
-        lastEvent = name;
-        return true;
+      if(name == "rotate"){
+        if(new Date().getTime() - lastEventTime > CIRCLE_WAIT){
+          lastEventTime = new Date().getTime();
+          lastEvent = name;
+          return true;
+        }else{
+          return false;
+        }
       }
 
       if(lastEvent != name || new Date().getTime() - lastEventTime > SWIPE_WAIT) {
