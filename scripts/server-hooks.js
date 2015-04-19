@@ -1,4 +1,4 @@
-var server = io('http://localhost:3000');
+var server = io('http://enlightonme.azurewebsites.net');
 
 $(document).ready(function() {
     var blockrain = $('.game').data('aerolab-blockrain');
