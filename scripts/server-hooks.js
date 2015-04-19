@@ -13,6 +13,7 @@ $(document).ready(function() {
         console.log('your id is: ' + data.you);
         console.log('your opponent id is: ' + data.opponent);
     });
+<<<<<<< HEAD
     server.on('opponent disconnected', function(data) {
         console.log('Your opponent disconnected');
         console.log('You win!');
@@ -22,5 +23,8 @@ $(document).ready(function() {
     });
     server.on('rematch denied', function(data) {
         console.log('Rematch denied');
+    });
+    server.on('opponent update', function (data) {
+        console.log('Opponent sent ' + data.length + ' piece locations');
     });
 });

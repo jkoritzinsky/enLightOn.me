@@ -18,7 +18,7 @@
     nleap.handle("xyzpos", function(vector3){
 
     if(vector3[0] >= -50 && vector3[0] <= 50
-      && vector3[1] >= 100 && vector3[1] <= 200
+      && vector3[1] >= 150 && vector3[1] <= 250
       && vector3[2] >= 0 && vector3[2] <= 60){
 
         if(secondsToStart < 0){

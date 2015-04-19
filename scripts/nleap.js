@@ -22,7 +22,7 @@ var nleap = (function(){
           trackXYZPos(frame.hands[0]);
 
           // if in move mode #2, track circle gestures
-          if(moveMode == 2 && frame.gestures.length > 0) {
+          if((moveMode == 0) && frame.gestures.length > 0) {
             frame.gestures.forEach(function(gesture){
               if(gesture.type == "circle"){
                 trackCircle(frame, gesture);
@@ -36,7 +36,7 @@ var nleap = (function(){
           }
 
           // if in move mode #0, track swipe gestures
-          if(moveMode == 0 && frame.gestures.length > 0) {
+          if(moveMode == 2 && frame.gestures.length > 0) {
             frame.gestures.forEach(function(gesture){
               if(gesture.type == "swipe"){
                 trackSwipe(gesture);
@@ -181,7 +181,7 @@ var nleap = (function(){
       }
 
       if(name == "rotate"){
-        if(new Date().getTime() - lastEventTime > CIRCLE_WAIT){
+        if( (lastEvent != "rotate" && lastEvent != "xpos") || new Date().getTime() - lastEventTime > CIRCLE_WAIT){
           lastEventTime = new Date().getTime();
           lastEvent = name;
           return true;
