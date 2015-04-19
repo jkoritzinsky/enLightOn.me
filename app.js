@@ -3,7 +3,7 @@ var uuid = require('node-uuid');
 var app = require('http').createServer(handler);
 var io = require('socket.io')(app);
 
-app.listen(3001);
+app.listen(process.env.PORT);
 
 function handler (req, res) {
     res.setHeader("Access-Control-Allow-Origin", "*");
