@@ -47,10 +47,9 @@
 				window.export = function (data) {
 					if (delay > 10) {
 						delay = 0;
-						console.log('send');
+						console.log('send data');
 						server.emit('opponent update', data);
 					} else {
-						console.log('avoided');
 						delay++;
 					}
 				}
