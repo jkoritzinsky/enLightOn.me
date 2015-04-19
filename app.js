@@ -1,6 +1,9 @@
 var uuid = require('node-uuid');
 var app = require('http').createServer(handler);
 var io = require('socket.io')(app);
+var handler = function(req, res) {
+    res.writeHead(200, 'Access-Control-Allow-Origin: *')
+}
 
 app.listen(80);
 
