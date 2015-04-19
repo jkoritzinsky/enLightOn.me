@@ -13,7 +13,7 @@ $(document).ready(function() {
         console.log('your id is: ' + data.you);
         console.log('your opponent id is: ' + data.opponent);
     });
-<<<<<<< HEAD
+
     server.on('opponent disconnected', function(data) {
         console.log('Your opponent disconnected');
         console.log('You win!');
