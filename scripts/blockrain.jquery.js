@@ -49,16 +49,21 @@
      * Start/Restart Game
      */
     start: function() {
+      gameEvents.run('gameStart');
       this._doStart();
       this.options.onStart.call(this.element);
     },
 
     restart: function() {
+      gameEvents.run('gameEnd');
+      gameEvents.run('gameRestart');
       this._doStart();
       this.options.onRestart.call(this.element);
     },
 
     gameover: function() {
+      gameEvents.run('gameEnd');
+      gameEvents.run('gameOver');
       this.showGameOverMessage();
       this._board.gameover = true;
       this.options.onGameOver.call(this.element, this._filled.score);
@@ -79,10 +84,12 @@
 
 
     pause: function() {
+      gameEvents.run('gamePaused');
       this._board.paused = true;
     },
 
     resume: function() {
+      gameEvents.run('gameResume');
       this._board.paused = false;
     },
 
@@ -645,6 +652,7 @@
 
           this.score += scores[numLines];
           game._$scoreText.text(this.score);
+          gameEvents.run('scoreUpdate', this.score);
 
           game.options.onLine.call(game.element, numLines, scores[numLines], this.score);
         },
@@ -728,6 +736,7 @@
           game._$gameover.show();
         },
         nextShape: function(_set_next_only) {
+          gameEvents.run('loadNewBlock');
           var next = this.next,
             func, shape, result;
 
