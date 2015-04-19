@@ -19,11 +19,9 @@
       nleap.lastGridPos = gridPos;
       nleap.lastHorizMove = new Date().getTime();
     }
-    console.log(gridPos);
   });
 
   nleap.handle("down", function(){
-    console.log("DOWN!");
     window.controls.moveDown(true);
   });
 
@@ -33,7 +31,6 @@
     }else{
       window.controls.rotateCounterclockwise();
     }
-    console.log("Rotate " + (clockwise ? "clockwise" : "counter-clockwise"));
   });
 
 })();

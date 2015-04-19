@@ -1188,7 +1188,7 @@
           game.start();
         },
         refreshDelay: function() {
-          game._board.dropDelay = 20;
+          game._board.dropDelay = 30;
         }
       };
 

@@ -27,13 +27,25 @@ var nleap = (function(){
     function trackXYZPos(hand) {
       if(hand){
 
-        if(hand.palmPosition[1] < 100){
-          event("down", null);
-        }else if(hand.palmPosition[1] < 300){
-          event("xpos", Math.round(hand.palmPosition[0]));
-        }else {
-          event("rotate", true);
+        if(hand.fingers[0].extended){
+          if(hand.palmPosition[1] < 250){
+            event("xpos", Math.round(hand.palmPosition[0]));
+          }else {
+            event("rotate", true);
+          }
+        }else{
+          if(hand.palmPosition[1] < 120){
+            event("down", null);
+          }
         }
+
+        // if(hand.palmPosition[1] < 100){
+        //   event("down", null);
+        // }else if(hand.palmPosition[1] < 300){
+        //   event("xpos", Math.round(hand.palmPosition[0]));
+        // }else {
+        //   event("rotate", true);
+        // }
 
         event("xyzpos", hand.palmPosition);
       }
